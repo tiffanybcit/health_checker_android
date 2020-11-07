@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/deviceID2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize = "15sp"
+            android:layout_margin="3dp"
+            android:text="@string/deviceID2"
+            >
+
+        </TextView>
+        <TextView
+            android:id="@+id/date2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "15sp"
+            android:text="@string/date2"
+            >
+
+        </TextView>
+        <TextView
+            android:id="@+id/time2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "15sp"
+
+            android:text="@string/time2"
+            >
+
+        </TextView>
+
+
+        <EditText
+            android:id="@+id/sys2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "15sp"
+
+            android:text="@string/avrsys2"
+            >
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/dia2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "15sp"
+            android:text="@string/avrdia2"
+            >
+
+        </EditText>
+
+        <Button
+            android:id="@+id/textDeleteEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/deleteEntry"
+            />
+        <Button
+            android:id="@+id/textEditEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/editEntry"
+            />
+
+
+    </LinearLayout>
+
+</ScrollView>

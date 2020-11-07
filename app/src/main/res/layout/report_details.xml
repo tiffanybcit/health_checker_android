@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/title2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "18sp"
+
+            android:text="@string/title"
+            >
+
+        </TextView>
+        <TextView
+            android:id="@+id/deviceID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize = "15sp"
+            android:layout_margin="3dp"
+            android:text="@string/deviceID1"
+            >
+
+        </TextView>
+        <TextView
+            android:id="@+id/avrsys"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "15sp"
+            android:text="@string/avrsys1"
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/avrdia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "15sp"
+
+            android:text="@string/avrdia1"
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/avrcondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "15sp"
+
+            android:text="@string/avrcondition1"
+            >
+
+        </TextView>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>

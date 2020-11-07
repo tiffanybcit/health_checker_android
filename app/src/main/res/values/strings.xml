@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Assignment2</string>
+
+    <string name="hintSys">Sys</string>
+    <string name="hintDia">Dia</string>
+    <string name="btnAddEntry">Add Entry</string>
+    <string name="enterNewName">Enter New Name</string>
+    <string name="btnUpdate">Update</string>
+    <string name="btnDelete">Delete</string>
+    <string name="dividerCard">Divider</string>
+    <string name="line1">Line1</string>
+    <string name="line2">Line2</string>
+
+    <string name="btnCheckReport">Check Monthly Report</string>
+
+    <string name="deviceID1">Device</string>
+    <string name="avrsys1">Sys</string>
+    <string name="avrdia1">Dia</string>
+    <string name="avrcondition1">Condition</string>
+    <string name="deleteEntry">Delete this entry</string>
+    <string name="editEntry">Update this entry</string>
+
+    <string name="deviceID2">Device</string>
+    <string name="avrsys2">Sys</string>
+    <string name="avrdia2">Dia</string>
+    <string name="time2">Device</string>
+    <string name="date2">Sys</string>
+
+    <string name="title">Title</string>
+
+
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <LinearLayout
+    android:id="@+id/previewSummary"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textViewSerialNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/line1" />
+
+    <TextView
+        android:id="@+id/textViewSysReading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/line2" />
+        <TextView
+            android:id="@+id/textViewDiaReading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/line2" />
+
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/line2" />
+
+
+        <TextView
+            android:id="@+id/textViewCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/line2" />
+
+        <ImageView
+            android:contentDescription="@string/dividerCard"
+            android:layout_width="match_parent"
+            android:background="@drawable/rectangle"
+            android:layout_height="1dp">
+
+        </ImageView>
+
+</LinearLayout>
+
+</androidx.cardview.widget.CardView>

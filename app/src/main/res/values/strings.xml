@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Assignment2</string>
+    <string name="app_name">Gu_Sinarta</string>
 
-    <string name="hintSys">Sys</string>
-    <string name="hintDia">Dia</string>
+    <string name="hintSys">Systolic Pressure</string>
+    <string name="hintDia">Diastolic Pressure</string>
     <string name="btnAddEntry">Add Entry</string>
     <string name="enterNewName">Enter New Name</string>
     <string name="btnUpdate">Update</string>
@@ -14,19 +14,22 @@
     <string name="btnCheckReport">Check Monthly Report</string>
 
     <string name="deviceID1">Device</string>
-    <string name="avrsys1">Sys</string>
-    <string name="avrdia1">Dia</string>
+    <string name="avrsys1">Systolic Pressure</string>
+    <string name="avrdia1">Diastolic Pressure</string>
     <string name="avrcondition1">Condition</string>
     <string name="deleteEntry">Delete this entry</string>
     <string name="editEntry">Update this entry</string>
 
     <string name="deviceID2">Device</string>
-    <string name="avrsys2">Sys</string>
-    <string name="avrdia2">Dia</string>
+    <string name="avrsys2">Systolic Pressure</string>
+    <string name="avrdia2">Diastolic Pressure</string>
     <string name="time2">Device</string>
     <string name="date2">Sys</string>
 
     <string name="title">Title</string>
 
+    <string name="logo">Logo</string>
+    <string name="newReading">Add a new reading:</string>
+    <string name="viewReadings">View your readings:</string>
 
 </resources>

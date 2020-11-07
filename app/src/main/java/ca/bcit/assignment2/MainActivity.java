@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         editTextSys = findViewById(R.id.editTextSys);
         editTextDia = findViewById(R.id.editTextDia);
         buttonAdd = findViewById(R.id.buttonAdd);
-    report = findViewById(R.id.buttonMonthlyReport);
+        report = findViewById(R.id.buttonMonthlyReport);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

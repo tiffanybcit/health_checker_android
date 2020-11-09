@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.item_list);
         recyclerView.setHasFixedSize(true);
 
+        recyclerView.setNestedScrollingEnabled(false);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        recyclerView2 = findViewById(R.id.item_list2);
@@ -354,7 +355,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         Intent intent = new Intent(this, Report.class);
-        Toast.makeText(this, "You just clicked for report", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "You just clicked to see your report", Toast.LENGTH_SHORT).show();
         intent.putExtra("familyMem1", familyMemberList.get(0));
         intent.putExtra("sys1", sysList.get(0));
         intent.putExtra("dia1", diaList.get(0));

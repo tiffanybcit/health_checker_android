@@ -7,35 +7,34 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <TextView
             android:id="@+id/date2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:textSize = "15sp"
-            android:text="@string/date2"
-            >
-
-        </TextView>
+            android:text="@string/date2" />
         <TextView
             android:id="@+id/time2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:textSize = "15sp"
-
-            android:text="@string/time2"
-            >
-
-        </TextView>
+            android:text="@string/time2" />
         <Spinner
             android:id="@+id/familyMem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textSize = "15sp"
-            android:layout_margin="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:text="@string/deviceID2"
             >
 
@@ -45,37 +44,43 @@
             android:id="@+id/sys2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:textSize = "15sp"
-
-            android:text="@string/avrsys2"
-            >
-
-        </EditText>
+            android:text="@string/avrsys2" />
 
         <EditText
             android:id="@+id/dia2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:textSize = "15sp"
-            android:text="@string/avrdia2"
-            >
+            android:text="@string/avrdia2" />
 
-        </EditText>
 
         <Button
             android:id="@+id/textDeleteEntry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/deleteEntry"
-            />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:backgroundTint="@color/colorPrimary" />
+
         <Button
             android:id="@+id/textEditEntry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/editEntry"
-            />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:backgroundTint="@color/colorPrimary" />
 
 
     </LinearLayout>

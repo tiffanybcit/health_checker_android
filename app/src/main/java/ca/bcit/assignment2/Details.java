@@ -163,12 +163,12 @@ public class Details extends AppCompatActivity {
         }
 
         if (TextUtils.isEmpty(sys)) {
-            Toast.makeText(this, "You must enter a sys pressure.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "You must enter your systolic pressure.", Toast.LENGTH_LONG).show();
             return;
         }
 
         if (TextUtils.isEmpty(dia)) {
-            Toast.makeText(this, "You must enter a dia pressure.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "You must enter your diastolic pressure.", Toast.LENGTH_LONG).show();
             return;
         }
 

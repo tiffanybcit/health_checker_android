@@ -7,17 +7,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/deviceID2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textSize = "15sp"
-            android:layout_margin="3dp"
-            android:text="@string/deviceID2"
-            >
 
-        </TextView>
         <TextView
             android:id="@+id/date2"
             android:layout_width="match_parent"
@@ -39,7 +29,17 @@
             >
 
         </TextView>
+        <Spinner
+            android:id="@+id/familyMem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize = "15sp"
+            android:layout_margin="3dp"
+            android:text="@string/deviceID2"
+            >
 
+        </Spinner>
 
         <EditText
             android:id="@+id/sys2"

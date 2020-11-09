@@ -5,7 +5,7 @@ import java.util.Date;
 
 //entry object
 public class Entry implements Serializable {
-    String _serialNum;
+    String _familyMember;
     Date _date;
     String _sys;
     String _dia;
@@ -16,8 +16,8 @@ public class Entry implements Serializable {
 
     }
 
-    public void set_serialNum(String _serialNum) {
-        this._serialNum = _serialNum;
+    public void set_familyMember(String _familyMember) {
+        this._familyMember = _familyMember;
     }
 
     public void set_date(Date _date) {
@@ -44,8 +44,8 @@ public class Entry implements Serializable {
         this._condition = _condition;
     }
 
-    public Entry(String id, String serialNum, Date date, String sys, String dia, String condition) {
-        _serialNum = serialNum;
+    public Entry(String id, String familyMember, Date date, String sys, String dia, String condition) {
+        _familyMember = familyMember;
         _date = date;
         _sys = sys;
         _dia = dia;
@@ -54,8 +54,8 @@ public class Entry implements Serializable {
 
     }
 
-    public String get_serialNum() {
-        return _serialNum;
+    public String get_familyMember() {
+        return _familyMember;
     }
 
     public Date get_date() {

@@ -54,7 +54,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, int position) {
         final Entry item = articleList.get(position);
-        holder.line1.setText("Device ID: " + item.get_serialNum());
+        holder.line1.setText("Family Member: " + item.get_familyMember());
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss", Locale.US);
         String dateString = format.format(item.get_date());
@@ -70,6 +70,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 Intent intent = new Intent(view.getContext(), Details.class);
                 Toast.makeText(context, "You just clicked something", Toast.LENGTH_SHORT).show();
                 intent.putExtra("entry", item);
+
                 view.getContext().startActivity(intent);
             }
         });
@@ -93,7 +94,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            line1 = itemView.findViewById(R.id.textViewSerialNum);
+            line1 = itemView.findViewById(R.id.textViewFamilyMember);
             line2 = itemView.findViewById(R.id.textViewDate);
             line3 = itemView.findViewById(R.id.textViewSysReading);
             line4 = itemView.findViewById(R.id.textViewDiaReading);

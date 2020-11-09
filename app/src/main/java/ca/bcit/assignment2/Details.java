@@ -1,14 +1,18 @@
 package ca.bcit.assignment2;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +33,9 @@ import java.util.Map;
 public class Details extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     TextView title;
-    TextView DeviceNum;
+    String[] arraySpinner;
+    Context context;
+    Spinner familyMem;
     TextView Date;
     TextView Time;
     EditText sys1;
@@ -41,30 +47,38 @@ public class Details extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        context = getApplicationContext();
+        arraySpinner = context.getResources().getStringArray(R.array.familyMember);
+
+        familyMem = findViewById(R.id.familyMem);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, arraySpinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        familyMem.setAdapter(adapter);
 
 
-        DeviceNum = findViewById(R.id.deviceID2);
+
         Date = findViewById(R.id.date2);
         Time = findViewById(R.id.time2);
 
         sys1 = findViewById(R.id.sys2);
         dia1 = findViewById(R.id.dia2);
         delete = findViewById(R.id.textDeleteEntry);
+
         edit = findViewById(R.id.textEditEntry);
-
-
         //Received from the last page
         Intent intent = getIntent();
         final Entry article = (Entry) intent.getSerializableExtra("entry");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss", Locale.US);
-
-
+//        article.get_familyMember();
+        getIndex(familyMem, article.get_familyMember());
+        familyMem.setSelection(getIndex(familyMem, article.get_familyMember()));
         String dateString = format.format(article.get_date());
 
         String date = dateString.substring(0, 11);
         String time = dateString.substring(11);
 
-        DeviceNum.setText("Device ID: " + article.get_serialNum());
+
         Date.setText("Date: " + date);
 
         Time.setText("Time: " + time);
@@ -87,10 +101,10 @@ public class Details extends AppCompatActivity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getInput(article.get_serialNum(), article.get_id());
-                Intent intent = new Intent(view.getContext(), MainActivity.class);
+                getInput(article.get_id());
+//                Intent intent = new Intent(view.getContext(), MainActivity.class);
                 Toast.makeText(view.getContext(), "Update Successful!", Toast.LENGTH_SHORT).show();
-                view.getContext().startActivity(intent);
+//                view.getContext().startActivity(intent);
             }
         });
 
@@ -116,7 +130,8 @@ public class Details extends AppCompatActivity {
     }
 
     //get user input to be used later in update function
-    public void getInput(String num, String id){
+    public void getInput(String id){
+        String fam = familyMem.getSelectedItem().toString();
         String sys = sys1.getText().toString().trim();
         String dia = dia1.getText().toString().trim();
         if (TextUtils.isEmpty(sys)) {
@@ -131,27 +146,38 @@ public class Details extends AppCompatActivity {
         String status11 = "";
         if(Integer.parseInt(sys) < 120 && Integer.parseInt(dia) < 80){
             status11 +="Normal";
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         } else if((Integer.parseInt(sys) < 129) && (Integer.parseInt(sys) > 120) && Integer.parseInt(dia) < 80){
             status11 +="Elevated";
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         } else if ((Integer.parseInt(sys) < 139 && Integer.parseInt(sys) > 130) || (Integer.parseInt(dia) > 80 && Integer.parseInt(dia) < 89)){
             status11 +="High Blood Pressure(Stage1)";
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         } else if((Integer.parseInt(sys) > 180) || (Integer.parseInt(dia) > 120 )){
             status11 +="Hypertensive Crisis";
+            confirm();
         } else {
             status11 +="High Blood Pressure(Stage2)";
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+
         }
-        update(num, status11, sys, dia, id);
-        finish();
-        overridePendingTransition( 0, 0);
-        startActivity(getIntent());
-        overridePendingTransition( 0, 0);
+        update(fam, status11, sys, dia, id);
+
+//        finish();
+//        overridePendingTransition( 0, 0);
+//        startActivity(getIntent());
+//        overridePendingTransition( 0, 0);
 
     }
 
     //update helper function
-    public void update(String serial, String status, String sys, String dia, String id){
+    public void update(String fam, String status, String sys, String dia, String id){
         Map<String, Object> temp = new HashMap<>();
-        temp.put("Serial", serial);
+        temp.put("FamilyMember", fam);
         temp.put("Sys", sys);
         temp.put("Dia", dia);
         temp.put("Condition", status);
@@ -172,5 +198,41 @@ public class Details extends AppCompatActivity {
                         Log.w("Tag", "Error writing document", e);
                     }
                 });
+    }
+    private int getIndex(Spinner spinner, String myString){
+
+        int index = 0;
+
+        for (int i=0;i<spinner.getCount();i++){
+            if (spinner.getItemAtPosition(i).equals(myString)){
+                index = i;
+            }
+        }
+        return index;
+    }
+    //the alert
+    public void confirm() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle("Warning");
+        builder.setMessage("Consult your doctor immediately!");
+        builder.setPositiveButton("Dismiss",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+//        builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//            }
+//        });
+
+        android.app.AlertDialog dialog = builder.create();
+        dialog.show();
+
+
     }
 }

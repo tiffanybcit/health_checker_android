@@ -17,8 +17,26 @@
             >
 
         </TextView>
+<!--        <ScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp">-->
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/item_list2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="329dp" />-->
+
+<!--        </ScrollView>-->
+        <ImageView
+            android:contentDescription="@string/dividerCard"
+            android:layout_width="match_parent"
+            android:background="@drawable/rectangle"
+            android:layout_height="1dp">
+
+        </ImageView>
         <TextView
-            android:id="@+id/deviceID"
+            android:id="@+id/family1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -29,7 +47,7 @@
 
         </TextView>
         <TextView
-            android:id="@+id/avrsys"
+            android:id="@+id/avrsys1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
@@ -40,7 +58,7 @@
         </TextView>
 
         <TextView
-            android:id="@+id/avrdia"
+            android:id="@+id/avrdia1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
@@ -52,7 +70,7 @@
         </TextView>
 
         <TextView
-            android:id="@+id/avrcondition"
+            android:id="@+id/avrcondition1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
@@ -63,7 +81,165 @@
 
         </TextView>
 
+        <ImageView
+            android:contentDescription="@string/dividerCard"
+            android:layout_width="match_parent"
+            android:background="@drawable/rectangle"
+            android:layout_height="1dp">
 
+        </ImageView>
+        <TextView
+            android:id="@+id/family2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize = "15sp"
+            android:layout_margin="3dp"
+            android:text="@string/deviceID1"
+            >
+
+        </TextView>
+        <TextView
+            android:id="@+id/avrsys2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "15sp"
+            android:text="@string/avrsys1"
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/avrdia2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "15sp"
+
+            android:text="@string/avrdia1"
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/avrcondition2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "15sp"
+
+            android:text="@string/avrcondition1"
+            >
+
+        </TextView>
+        <ImageView
+            android:contentDescription="@string/dividerCard"
+            android:layout_width="match_parent"
+            android:background="@drawable/rectangle"
+            android:layout_height="1dp">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/family3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize = "15sp"
+            android:layout_margin="3dp"
+            android:text="@string/deviceID1"
+            >
+
+        </TextView>
+        <TextView
+            android:id="@+id/avrsys3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "15sp"
+            android:text="@string/avrsys1"
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/avrdia3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "15sp"
+
+            android:text="@string/avrdia1"
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/avrcondition3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "15sp"
+
+            android:text="@string/avrcondition1"
+            >
+
+        </TextView>
+        <ImageView
+            android:contentDescription="@string/dividerCard"
+            android:layout_width="match_parent"
+            android:background="@drawable/rectangle"
+            android:layout_height="1dp">
+
+        </ImageView>
+
+
+        <TextView
+            android:id="@+id/family4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize = "15sp"
+            android:layout_margin="3dp"
+            android:text="@string/deviceID1"
+            >
+
+        </TextView>
+        <TextView
+            android:id="@+id/avrsys4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "15sp"
+            android:text="@string/avrsys1"
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/avrdia4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "15sp"
+
+            android:text="@string/avrdia1"
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/avrcondition4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize = "15sp"
+
+            android:text="@string/avrcondition1"
+            >
+
+        </TextView>
 
 
 

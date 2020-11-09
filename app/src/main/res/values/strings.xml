@@ -32,4 +32,10 @@
     <string name="newReading">Add a new reading:</string>
     <string name="viewReadings">View your readings:</string>
 
+    <array name="familyMember">
+        <item>father@home.com</item>
+        <item>mother@home.com</item>
+        <item>grandma@home.com</item>
+        <item>grandpa@home.com</item>
+    </array>
 </resources>

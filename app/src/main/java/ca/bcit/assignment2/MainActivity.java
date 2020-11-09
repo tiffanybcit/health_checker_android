@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,10 +18,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,18 +53,18 @@ public class MainActivity extends AppCompatActivity {
 
     EditText editTextSys;
     EditText editTextDia;
+    Spinner s;
     Calendar calendar;
 
     Button buttonAdd;
     Button report;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    String[] arraySpinner;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-
+    Context context;
     private ArrayList<Entry> listItems;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,14 +87,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getReport();
-
+//setReport();
             }
         });
         recyclerView = findViewById(R.id.item_list);
         recyclerView.setHasFixedSize(true);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerView2 = findViewById(R.id.item_list2);
+//        recyclerView2.setHasFixedSize(true);
+//        recyclerView2.setLayoutManager(new LinearLayoutManager(this));
+        context = getApplicationContext();
+        arraySpinner = context.getResources().getStringArray(R.array.familyMember);
+
+        s = (Spinner) findViewById(R.id.spinner_time);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, arraySpinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s.setAdapter(adapter);
+
+
+//        String text = spinner.getSelectedItem().toString();
         listItems = new ArrayList<>();
         setQuene();
 
@@ -98,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putString("fammember", Integer.toString(s.getSelectedItemPosition()));
         outState.putString("sysreading", editTextSys.getText().toString());
         outState.putString("diareading", editTextDia.getText().toString());
     }
@@ -105,84 +124,313 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        int familyMember = Integer.parseInt(savedInstanceState.getString("fammember"));
         String _sysreading = savedInstanceState.getString("sysreading");
         String _diareading = savedInstanceState.getString("diareading");
-
+        s.setSelection(familyMember);
         editTextSys.setText(_sysreading);
         editTextDia.setText(_diareading);
 
     }
 
-    //prepare and send to report page
+//    //prepare and send to report page
     public void getReport(){
-        int temp_sys = 0;
-        int temp_dia = 0;
-        int counter = 0;
-        int div_temp_sys = 0;
-        int div_temp_dia = 0;
-        String condition = "";
-        Calendar calendar = Calendar.getInstance();
-        String deviceId = Settings.System.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-//        Log.d("debug", deviceId);
-        String monthNow  = (String) DateFormat.format("MM",   calendar); // 06
-//        Log.d("debug", monthNow);
-        String yearNow = (String) DateFormat.format("yyyy", calendar); // 2013
-//        Log.d("debug", yearNow);
-        for (int i = 0; i < listItems.size(); i++) {
-            String monthThen = (String) DateFormat.format("MM",  listItems.get(i).get_date());
-//            Log.d("debug", monthThen);
-            String yearThen = (String) DateFormat.format("yyyy", listItems.get(i).get_date());
-//            Log.d("debug", yearThen);
-//            Log.d("debug", listItems.get(i).get_serialNum());
-            if(deviceId.equals(listItems.get(i).get_serialNum())){
+        ArrayList<String> familyMemberList = new ArrayList<String>();
+        ArrayList<Integer> sysList = new ArrayList<Integer>();
+        ArrayList<Integer> diaList = new ArrayList<Integer>();
+        ArrayList<String> conditionList = new ArrayList<String>();
+        int temp_sys1 = 0;
+        int temp_dia1 = 0;
+        int counter1 = 0;
+        int div_temp_sys1 = 0;
+        int div_temp_dia1 = 0;
+        String condition1 = "";
 
-            }
-            if(deviceId.equals(listItems.get(i).get_serialNum())) {
-                if(monthNow.equals(monthThen) && yearNow.equals(yearThen)) {
-                    Log.d("debug", Integer.toString(temp_sys));
-                    Log.d("debug", Integer.toString(temp_dia));
-                    Log.d("debug", Integer.toString(counter));
-                    temp_sys += Integer.parseInt(listItems.get(i).get_sys());
-                    temp_dia += Integer.parseInt(listItems.get(i).get_dia());
-                    counter = counter + 1;
+        int temp_sys2 = 0;
+        int temp_dia2 = 0;
+        int counter2 = 0;
+        int div_temp_sys2 = 0;
+        int div_temp_dia2 = 0;
+        String condition2 = "";
+
+        int temp_sys3 = 0;
+        int temp_dia3 = 0;
+        int counter3 = 0;
+        int div_temp_sys3 = 0;
+        int div_temp_dia3 = 0;
+        String condition3 = "";
+
+        int temp_sys4 = 0;
+        int temp_dia4 = 0;
+        int counter4 = 0;
+        int div_temp_sys4 = 0;
+        int div_temp_dia4 = 0;
+        String condition4 = "";
+
+        Calendar calendar = Calendar.getInstance();
+        String monthNow  = (String) DateFormat.format("MM",   calendar); // 06
+        String yearNow = (String) DateFormat.format("yyyy", calendar); // 2013
+
+        for (int j = 0; j < listItems.size(); j++) {
+            String monthThen = (String) DateFormat.format("MM", listItems.get(j).get_date());
+
+            String yearThen = (String) DateFormat.format("yyyy", listItems.get(j).get_date());
+
+            if ("father@home.com".equals(listItems.get(j).get_familyMember())) {
+                if (monthNow.equals(monthThen) && yearNow.equals(yearThen)) {
+
+                    temp_sys1 += Integer.parseInt(listItems.get(j).get_sys());
+                    temp_dia1 += Integer.parseInt(listItems.get(j).get_dia());
+                    counter1 = counter1 + 1;
                 }
             }
+        }
+            if(counter1 == 0){
+                div_temp_sys1 = 0;
+                div_temp_dia1 = 0;
+
+            } else {
+                div_temp_sys1 = temp_sys1 / counter1;
+                div_temp_dia1 = temp_dia1 / counter1;
             }
-        if(counter == 0){
-            div_temp_sys = 0;
-            div_temp_dia = 0;
+            if (div_temp_sys1 ==0 && div_temp_dia1 ==0){
+                condition1 += "No reading for this month!";
+            }
+            else if(div_temp_sys1 < 120 && div_temp_dia1 < 80){
+                condition1 +="Normal";
+            } else if(div_temp_sys1 < 129 && div_temp_dia1 > 120 && div_temp_dia1 < 80){
+                condition1 +="Elevated";
+            } else if ((div_temp_sys1 < 139 && div_temp_sys1 > 130) || (div_temp_dia1 > 80 && div_temp_dia1 < 89)){
+                condition1 +="High Blood Pressure(Stage1)";
+            } else if(div_temp_sys1 > 180 || div_temp_dia1 > 120 ){
+                condition1 +="Hypertensive Crisis";
+            }
+            else {
+                condition1 +="High Blood Pressure(Stage2)";
+            }
+
+            familyMemberList.add("father@home.com");
+            sysList.add(div_temp_sys1);
+            diaList.add(div_temp_dia1);
+            conditionList.add(condition1);
+
+        for (int j = 0; j < listItems.size(); j++) {
+            String monthThen = (String) DateFormat.format("MM", listItems.get(j).get_date());
+
+            String yearThen = (String) DateFormat.format("yyyy", listItems.get(j).get_date());
+
+            if ("mother@home.com".equals(listItems.get(j).get_familyMember())) {
+                if (monthNow.equals(monthThen) && yearNow.equals(yearThen)) {
+
+                    temp_sys2 += Integer.parseInt(listItems.get(j).get_sys());
+                    temp_dia2 += Integer.parseInt(listItems.get(j).get_dia());
+                    counter2 = counter2 + 1;
+                }
+            }
+        }
+        if(counter2 == 0){
+            div_temp_sys2 = 0;
+            div_temp_dia2 = 0;
 
         } else {
-            div_temp_sys = temp_sys / counter;
-            div_temp_dia = temp_dia / counter;
+            div_temp_sys2 = temp_sys2 / counter2;
+            div_temp_dia2 = temp_dia2 / counter2;
         }
-        if (div_temp_sys ==0 && div_temp_dia ==0){
-            condition += "No reading for this month!";
+        if (div_temp_sys2 ==0 && div_temp_dia2 ==0){
+            condition2 += "No reading for this month!";
         }
-        else if(div_temp_sys < 120 && div_temp_dia < 80){
-            condition +="Normal";
-        } else if(div_temp_sys < 129 && div_temp_dia > 120 && div_temp_dia < 80){
-            condition +="Elevated";
-        } else if ((div_temp_sys < 139 && div_temp_sys > 130) || (div_temp_dia > 80 && div_temp_dia < 89)){
-            condition +="High Blood Pressure(Stage1)";
-        } else if(div_temp_sys > 180 || div_temp_dia > 120 ){
-            condition +="Hypertensive Crisis";
+        else if(div_temp_sys2 < 120 && div_temp_dia2 < 80){
+            condition2 +="Normal";
+        } else if(div_temp_sys2 < 129 && div_temp_dia2 > 120 && div_temp_dia2 < 80){
+            condition2 +="Elevated";
+        } else if ((div_temp_sys2 < 139 && div_temp_sys2 > 130) || (div_temp_dia2 > 80 && div_temp_dia2 < 89)){
+            condition2 +="High Blood Pressure(Stage1)";
+        } else if(div_temp_sys2 > 180 || div_temp_dia2 > 120 ){
+            condition2 +="Hypertensive Crisis";
         }
         else {
-            condition +="High Blood Pressure(Stage2)";
+            condition2 +="High Blood Pressure(Stage2)";
         }
+
+        familyMemberList.add("mother@home.com");
+        sysList.add(div_temp_sys2);
+        diaList.add(div_temp_dia2);
+        conditionList.add(condition2);
+
+
+
+        for (int j = 0; j < listItems.size(); j++) {
+            String monthThen = (String) DateFormat.format("MM", listItems.get(j).get_date());
+
+            String yearThen = (String) DateFormat.format("yyyy", listItems.get(j).get_date());
+
+            if ("grandma@home.com".equals(listItems.get(j).get_familyMember())) {
+                if (monthNow.equals(monthThen) && yearNow.equals(yearThen)) {
+
+                    temp_sys3 += Integer.parseInt(listItems.get(j).get_sys());
+                    temp_dia3 += Integer.parseInt(listItems.get(j).get_dia());
+                    counter3 = counter3 + 1;
+                }
+            }
+        }
+        if(counter3 == 0){
+            div_temp_sys3 = 0;
+            div_temp_dia3 = 0;
+
+        } else {
+            div_temp_sys3 = temp_sys3 / counter3;
+            div_temp_dia3 = temp_dia3 / counter3;
+        }
+        if (div_temp_sys3 ==0 && div_temp_dia3 ==0){
+            condition3 += "No reading for this month!";
+        }
+        else if(div_temp_sys3 < 120 && div_temp_dia3 < 80){
+            condition3 +="Normal";
+        } else if(div_temp_sys3 < 129 && div_temp_dia3 > 120 && div_temp_dia3 < 80){
+            condition3 +="Elevated";
+        } else if ((div_temp_sys3 < 139 && div_temp_sys3 > 130) || (div_temp_dia3 > 80 && div_temp_dia3 < 89)){
+            condition3 +="High Blood Pressure(Stage1)";
+        } else if(div_temp_sys3 > 180 || div_temp_dia3 > 120 ){
+            condition3 +="Hypertensive Crisis";
+        }
+        else {
+            condition3 +="High Blood Pressure(Stage2)";
+        }
+
+        familyMemberList.add("grandma@home.com");
+        sysList.add(div_temp_sys3);
+        diaList.add(div_temp_dia3);
+        conditionList.add(condition3);
+
+
+
+        for (int j = 0; j < listItems.size(); j++) {
+            String monthThen = (String) DateFormat.format("MM", listItems.get(j).get_date());
+
+            String yearThen = (String) DateFormat.format("yyyy", listItems.get(j).get_date());
+
+            if ("grandpa@home.com".equals(listItems.get(j).get_familyMember())) {
+                if (monthNow.equals(monthThen) && yearNow.equals(yearThen)) {
+
+                    temp_sys4 += Integer.parseInt(listItems.get(j).get_sys());
+                    temp_dia4 += Integer.parseInt(listItems.get(j).get_dia());
+                    counter4 = counter4 + 1;
+                }
+            }
+        }
+        if(counter4 == 0){
+            div_temp_sys4 = 0;
+            div_temp_dia4 = 0;
+
+        } else {
+            div_temp_sys4 = temp_sys4 / counter4;
+            div_temp_dia4 = temp_dia4 / counter4;
+        }
+        if (div_temp_sys4 ==0 && div_temp_dia4 ==0){
+            condition4 += "No reading for this month!";
+        }
+        else if(div_temp_sys4 < 120 && div_temp_dia4 < 80){
+            condition4 +="Normal";
+        } else if(div_temp_sys4 < 129 && div_temp_dia4 > 120 && div_temp_dia4 < 80){
+            condition4 +="Elevated";
+        } else if ((div_temp_sys4 < 139 && div_temp_sys4 > 130) || (div_temp_dia4 > 80 && div_temp_dia4 < 89)){
+            condition4 +="High Blood Pressure(Stage1)";
+        } else if(div_temp_sys4 > 180 || div_temp_dia4 > 120 ){
+            condition4 +="Hypertensive Crisis";
+        }
+        else {
+            condition4 +="High Blood Pressure(Stage2)";
+        }
+
+        familyMemberList.add("grandpa@home.com");
+        sysList.add(div_temp_sys4);
+        diaList.add(div_temp_dia4);
+        conditionList.add(condition4);
+
 
         Intent intent = new Intent(this, Report.class);
         Toast.makeText(this, "You just clicked for report", Toast.LENGTH_SHORT).show();
-        intent.putExtra("id", deviceId);
-        intent.putExtra("sys", Integer.toString(div_temp_sys));
-        intent.putExtra("dia", Integer.toString(div_temp_dia));
-        intent.putExtra("condition", condition);
+        intent.putExtra("familyMem1", familyMemberList.get(0));
+        intent.putExtra("sys1", Integer.toString(sysList.get(0)));
+        intent.putExtra("dia1", Integer.toString(diaList.get(0)));
+        intent.putExtra("condition1", conditionList.get(0));
 
+        intent.putExtra("familyMem2", familyMemberList.get(1));
+        intent.putExtra("sys2", Integer.toString(sysList.get(1)));
+        intent.putExtra("dia2", Integer.toString(diaList.get(1)));
+        intent.putExtra("condition2", conditionList.get(1));
+
+        intent.putExtra("familyMem3", familyMemberList.get(2));
+        intent.putExtra("sys3", Integer.toString(sysList.get(2)));
+        intent.putExtra("dia3", Integer.toString(diaList.get(2)));
+        intent.putExtra("condition3", conditionList.get(2));
+
+        intent.putExtra("familyMem4", familyMemberList.get(3));
+        intent.putExtra("sys4", Integer.toString(sysList.get(3)));
+        intent.putExtra("dia4", Integer.toString(diaList.get(3)));
+        intent.putExtra("condition4", conditionList.get(3));
 
         startActivity(intent);
     }
-
+//    //read data from firebase to get to a list
+//    public void setReport(){
+//        int temp_sys1 = 0;
+//        int temp_dia1 = 0;
+//        int counter1 = 0;
+//        int div_temp_sys1 = 0;
+//        int div_temp_dia1 = 0;
+//        String condition1 = "";
+//
+//
+//        Calendar calendar = Calendar.getInstance();
+//        String monthNow  = (String) DateFormat.format("MM",   calendar); // 06
+//        String yearNow = (String) DateFormat.format("yyyy", calendar); // 2013
+//    for (int i = 0; i < arraySpinner.length; i++) {
+//        for (int j = 0; j < listItems.size(); j++) {
+//        String monthThen = (String) DateFormat.format("MM", listItems.get(j).get_date());
+//
+//        String yearThen = (String) DateFormat.format("yyyy", listItems.get(j).get_date());
+//
+//        if ("father@home.com".equals(listItems.get(j).get_familyMember())) {
+//            if (monthNow.equals(monthThen) && yearNow.equals(yearThen)) {
+//
+//                temp_sys1 += Integer.parseInt(listItems.get(j).get_sys());
+//                temp_dia1 += Integer.parseInt(listItems.get(j).get_dia());
+//                counter1 = counter1 + 1;
+//            }
+//        }
+//    }
+//    if (counter1 == 0) {
+//        div_temp_sys1 = 0;
+//        div_temp_dia1 = 0;
+//
+//    } else {
+//        div_temp_sys1 = temp_sys1 / counter1;
+//        div_temp_dia1 = temp_dia1 / counter1;
+//    }
+//    if (div_temp_sys1 == 0 && div_temp_dia1 == 0) {
+//        condition1 += "No reading for this month!";
+//    } else if (div_temp_sys1 < 120 && div_temp_dia1 < 80) {
+//        condition1 += "Normal";
+//    } else if (div_temp_sys1 < 129 && div_temp_dia1 > 120 && div_temp_dia1 < 80) {
+//        condition1 += "Elevated";
+//    } else if ((div_temp_sys1 < 139 && div_temp_sys1 > 130) || (div_temp_dia1 > 80 && div_temp_dia1 < 89)) {
+//        condition1 += "High Blood Pressure(Stage1)";
+//    } else if (div_temp_sys1 > 180 || div_temp_dia1 > 120) {
+//        condition1 += "Hypertensive Crisis";
+//    } else {
+//        condition1 += "High Blood Pressure(Stage2)";
+//    }
+//    ReportElement temp = new ReportElement(arraySpinner[i], div_temp_sys1, div_temp_dia1, condition1);
+//    familyConditions.add(temp);
+//
+//}
+//        adapter2 = new ReportAdapter(familyConditions, getApplicationContext());
+//        recyclerView2.setAdapter(adapter2);
+//        Intent intent = new Intent(this, Report.class);
+//        Toast.makeText(this, "You just clicked for report", Toast.LENGTH_SHORT).show();
+//        intent.putExtra("familyMem1", familyConditions);
+//    }
     //read data from firebase to get to a list
     public void setQuene(){
 
@@ -194,7 +442,8 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String temp_id = (String)document.getId();
-                                String temp_serial = (String) document.getData().get("Serial");
+                                Log.d("debug", "id "+(String)document.getId());
+                                String temp_fam = (String) document.getData().get("FamilyMember");
 //                                Log.d("debug", "Task "+(String) document.getData().get("task"));
 
                                 String temp_sys = (String) document.getData().get("Sys");
@@ -206,7 +455,7 @@ public class MainActivity extends AppCompatActivity {
 //                                Log.d("debug", "Date "+temp_time.toDate());
                                 String temp_status = (String) document.getData().get("Condition");
 
-                                Entry book123 = new Entry(temp_id, temp_serial, temp_time.toDate(), temp_sys, temp_dia, temp_status);
+                                Entry book123 = new Entry(temp_id, temp_fam, temp_time.toDate(), temp_sys, temp_dia, temp_status);
                                 listItems.add(book123);
 //                                Log.d("debug", document.getId() + " => " + document.getData());
                             }
@@ -247,6 +496,8 @@ public class MainActivity extends AppCompatActivity {
 
     //collect data to be used later for firebase
     public void addTask(){
+        String fam = s.getSelectedItem().toString();
+
         String sys1 = editTextSys.getText().toString().trim();
         String dia1 = editTextDia.getText().toString().trim();
         if (TextUtils.isEmpty(sys1)) {
@@ -260,7 +511,7 @@ public class MainActivity extends AppCompatActivity {
         }
         calendar = Calendar.getInstance();
 
-        String deviceId = Settings.System.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+//        String deviceId = Settings.System.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
     String status11 = "";
     if(Integer.parseInt(sys1) < 120 && Integer.parseInt(dia1) < 80){
@@ -272,7 +523,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
     } else if ((Integer.parseInt(sys1) < 139 && Integer.parseInt(sys1) > 130) || (Integer.parseInt(dia1) > 80 && Integer.parseInt(dia1) < 89)){
-        status11 +="Stage1";
+        status11 +="High Blood Pressure(Stage1)";
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
     }else if((Integer.parseInt(sys1) > 180) || (Integer.parseInt(dia1) > 120 )){
@@ -280,11 +531,11 @@ public class MainActivity extends AppCompatActivity {
         confirm();
     }
     else {
-        status11 +="Stage2";
+        status11 +="High Blood Pressure(Stage2)";
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
     }
-        writeToDatabase(deviceId, calendar.getTime(), sys1, dia1, status11);
+        writeToDatabase(fam, calendar.getTime(), sys1, dia1, status11);
 //        finish();
 //        overridePendingTransition( 0, 0);
 //        startActivity(getIntent());
@@ -294,10 +545,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //write to database
-    public void writeToDatabase(String serialNum, Date date, String sys, String dia, String condition) {
+    public void writeToDatabase(String fam, Date date, String sys, String dia, String condition) {
 
         Map<String, Object> task = new HashMap<>();
-        task.put("Serial", serialNum);
+
+        task.put("FamilyMember", fam);
         task.put("Date", date);
         task.put("Sys", sys);
         task.put("Dia", dia);

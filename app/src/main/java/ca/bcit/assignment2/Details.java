@@ -92,7 +92,8 @@ public class Details extends AppCompatActivity {
             public void onClick(View view) {
                 delete(article.get_id());
                 Intent intent = new Intent(view.getContext(), MainActivity.class);
-                Toast.makeText(view.getContext(), "Delete Successful!", Toast.LENGTH_SHORT).show();
+
+
                 view.getContext().startActivity(intent);
             }
         });
@@ -103,7 +104,7 @@ public class Details extends AppCompatActivity {
             public void onClick(View view) {
                 getInput(article.get_id());
 //                Intent intent = new Intent(view.getContext(), MainActivity.class);
-                Toast.makeText(view.getContext(), "Update Successful!", Toast.LENGTH_SHORT).show();
+
 //                view.getContext().startActivity(intent);
             }
         });
@@ -119,6 +120,7 @@ public class Details extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("TAG", "DocumentSnapshot successfully deleted!");
+                        Toast.makeText(context, "Delete Successful!", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -128,21 +130,48 @@ public class Details extends AppCompatActivity {
                     }
                 });
     }
+    // Function to check if a string
+    // contains only digits
+    public static boolean onlyDigits(String str)
+    {
+        // Traverse the string from
+        // start to end
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) >= '0'
+                    && str.charAt(i) <= '9') {
+//                Log.d("debug", Character.toString(str.charAt(i)));
+                continue;
+            } else {
+                return false;
+            }
 
+        }
+        return true;
+    }
     //get user input to be used later in update function
     public void getInput(String id){
         String fam = familyMem.getSelectedItem().toString();
         String sys = sys1.getText().toString().trim();
         String dia = dia1.getText().toString().trim();
+        if(!onlyDigits(sys)){
+            Toast.makeText(this, "You must enter a whole number.", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(!onlyDigits(dia)){
+            Toast.makeText(this, "You must enter a whole number.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         if (TextUtils.isEmpty(sys)) {
-            Toast.makeText(this, "You must enter a sys reading.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "You must enter a sys pressure.", Toast.LENGTH_LONG).show();
             return;
         }
 
         if (TextUtils.isEmpty(dia)) {
-            Toast.makeText(this, "You must enter a dia reading.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "You must enter a dia pressure.", Toast.LENGTH_LONG).show();
             return;
         }
+
         String status11 = "";
         if(Integer.parseInt(sys) < 120 && Integer.parseInt(dia) < 80){
             status11 +="Normal";
@@ -167,6 +196,7 @@ public class Details extends AppCompatActivity {
         }
         update(fam, status11, sys, dia, id);
 
+
 //        finish();
 //        overridePendingTransition( 0, 0);
 //        startActivity(getIntent());
@@ -190,6 +220,7 @@ public class Details extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("Tag", "DocumentSnapshot successfully written!");
+                        Toast.makeText(context, "Update Successful!", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

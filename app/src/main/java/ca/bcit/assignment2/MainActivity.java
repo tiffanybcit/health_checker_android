@@ -40,6 +40,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -138,8 +139,8 @@ public class MainActivity extends AppCompatActivity {
 //    //prepare and send to report page
     public void getReport(){
         ArrayList<String> familyMemberList = new ArrayList<String>();
-        ArrayList<Double> sysList = new ArrayList<Double>();
-        ArrayList<Double> diaList = new ArrayList<Double>();
+        ArrayList<String> sysList = new ArrayList<String>();
+        ArrayList<String> diaList = new ArrayList<String>();
         ArrayList<String> conditionList = new ArrayList<String>();
         int temp_sys1 = 0;
         int temp_dia1 = 0;
@@ -212,8 +213,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
             familyMemberList.add("father@home.com");
-            sysList.add(div_temp_sys1);
-            diaList.add(div_temp_dia1);
+            DecimalFormat df = new DecimalFormat("0.00");
+
+            sysList.add(df.format(div_temp_sys1));
+            diaList.add(df.format(div_temp_dia1));
             conditionList.add(condition1);
 
         for (int j = 0; j < listItems.size(); j++) {
@@ -255,8 +258,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         familyMemberList.add("mother@home.com");
-        sysList.add(div_temp_sys2);
-        diaList.add(div_temp_dia2);
+        sysList.add(df.format(div_temp_sys2));
+        diaList.add(df.format(div_temp_dia2));
         conditionList.add(condition2);
 
 
@@ -300,8 +303,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         familyMemberList.add("grandma@home.com");
-        sysList.add(div_temp_sys3);
-        diaList.add(div_temp_dia3);
+        sysList.add(df.format(div_temp_sys3));
+        diaList.add(df.format(div_temp_dia3));
         conditionList.add(condition3);
 
 
@@ -345,31 +348,31 @@ public class MainActivity extends AppCompatActivity {
         }
 
         familyMemberList.add("grandpa@home.com");
-        sysList.add(div_temp_sys4);
-        diaList.add(div_temp_dia4);
+        sysList.add(df.format(div_temp_sys4));
+        diaList.add(df.format(div_temp_dia4));
         conditionList.add(condition4);
 
 
         Intent intent = new Intent(this, Report.class);
         Toast.makeText(this, "You just clicked for report", Toast.LENGTH_SHORT).show();
         intent.putExtra("familyMem1", familyMemberList.get(0));
-        intent.putExtra("sys1", Double.toString(sysList.get(0)));
-        intent.putExtra("dia1", Double.toString(diaList.get(0)));
+        intent.putExtra("sys1", sysList.get(0));
+        intent.putExtra("dia1", diaList.get(0));
         intent.putExtra("condition1", conditionList.get(0));
 
         intent.putExtra("familyMem2", familyMemberList.get(1));
-        intent.putExtra("sys2", Double.toString(sysList.get(1)));
-        intent.putExtra("dia2", Double.toString(diaList.get(1)));
+        intent.putExtra("sys2", sysList.get(1));
+        intent.putExtra("dia2", diaList.get(1));
         intent.putExtra("condition2", conditionList.get(1));
 
         intent.putExtra("familyMem3", familyMemberList.get(2));
-        intent.putExtra("sys3", Double.toString(sysList.get(2)));
-        intent.putExtra("dia3", Double.toString(diaList.get(2)));
+        intent.putExtra("sys3", sysList.get(2));
+        intent.putExtra("dia3", diaList.get(2));
         intent.putExtra("condition3", conditionList.get(2));
 
         intent.putExtra("familyMem4", familyMemberList.get(3));
-        intent.putExtra("sys4", Double.toString(sysList.get(3)));
-        intent.putExtra("dia4", Double.toString(diaList.get(3)));
+        intent.putExtra("sys4", sysList.get(3));
+        intent.putExtra("dia4", diaList.get(3));
         intent.putExtra("condition4", conditionList.get(3));
 
         startActivity(intent);
@@ -502,14 +505,9 @@ public class MainActivity extends AppCompatActivity {
         // Traverse the string from
         // start to end
         for (int i = 0; i < str.length(); i++) {
-
-            // Check if character is
-            // digit from 0-9
-            // then return true
-            // else false
             if (str.charAt(i) >= '0'
                     && str.charAt(i) <= '9') {
-                Log.d("debug", Character.toString(str.charAt(i)));
+//                Log.d("debug", Character.toString(str.charAt(i)));
                 continue;
             } else {
                 return false;
@@ -524,16 +522,24 @@ public class MainActivity extends AppCompatActivity {
         String fam = s.getSelectedItem().toString();
 
         String sys1 = editTextSys.getText().toString().trim();
-        Log.d("debugg", sys1);
+//        Log.d("debugg", sys1);
         String dia1 = editTextDia.getText().toString().trim();
-        Log.d("debugg", dia1);
+//        Log.d("debugg", dia1);
+        if(!onlyDigits(sys1)){
+            Toast.makeText(this, "You must enter a whole number.", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(!onlyDigits(dia1)){
+            Toast.makeText(this, "You must enter a whole number.", Toast.LENGTH_LONG).show();
+            return;
+        }
 
-        if (TextUtils.isEmpty(sys1) || !onlyDigits(sys1)) {
+        if (TextUtils.isEmpty(sys1)) {
             Toast.makeText(this, "You must enter a sys pressure.", Toast.LENGTH_LONG).show();
             return;
         }
 
-        if (TextUtils.isEmpty(dia1) || !onlyDigits(dia1)) {
+        if (TextUtils.isEmpty(dia1)) {
             Toast.makeText(this, "You must enter a dia pressure.", Toast.LENGTH_LONG).show();
             return;
         }

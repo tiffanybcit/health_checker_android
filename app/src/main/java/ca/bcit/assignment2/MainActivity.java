@@ -493,19 +493,40 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    // Function to check if a string
+    // contains only digits
+    public static boolean onlyDigits(String str)
+    {
+        // Traverse the string from
+        // start to end
+        for (int i = 0; i < str.length(); i++) {
 
+            // Check if character is
+            // digit from 0-9
+            // then return true
+            // else false
+            if (str.charAt(i) >= '0'
+                    && str.charAt(i) <= '9') {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        return false;
+    }
     //collect data to be used later for firebase
     public void addTask(){
         String fam = s.getSelectedItem().toString();
 
         String sys1 = editTextSys.getText().toString().trim();
         String dia1 = editTextDia.getText().toString().trim();
-        if (TextUtils.isEmpty(sys1)) {
+        if (TextUtils.isEmpty(sys1) || !onlyDigits(sys1)) {
             Toast.makeText(this, "You must enter a sys pressure.", Toast.LENGTH_LONG).show();
             return;
         }
 
-        if (TextUtils.isEmpty(dia1)) {
+        if (TextUtils.isEmpty(dia1) || !onlyDigits(dia1)) {
             Toast.makeText(this, "You must enter a dia pressure.", Toast.LENGTH_LONG).show();
             return;
         }

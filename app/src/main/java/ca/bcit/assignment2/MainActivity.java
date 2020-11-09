@@ -136,35 +136,35 @@ public class MainActivity extends AppCompatActivity {
 //    //prepare and send to report page
     public void getReport(){
         ArrayList<String> familyMemberList = new ArrayList<String>();
-        ArrayList<Integer> sysList = new ArrayList<Integer>();
-        ArrayList<Integer> diaList = new ArrayList<Integer>();
+        ArrayList<Double> sysList = new ArrayList<Double>();
+        ArrayList<Double> diaList = new ArrayList<Double>();
         ArrayList<String> conditionList = new ArrayList<String>();
         int temp_sys1 = 0;
         int temp_dia1 = 0;
         int counter1 = 0;
-        int div_temp_sys1 = 0;
-        int div_temp_dia1 = 0;
+        double div_temp_sys1 = 0;
+        double div_temp_dia1 = 0;
         String condition1 = "";
 
         int temp_sys2 = 0;
         int temp_dia2 = 0;
         int counter2 = 0;
-        int div_temp_sys2 = 0;
-        int div_temp_dia2 = 0;
+        double div_temp_sys2 = 0;
+        double div_temp_dia2 = 0;
         String condition2 = "";
 
         int temp_sys3 = 0;
         int temp_dia3 = 0;
         int counter3 = 0;
-        int div_temp_sys3 = 0;
-        int div_temp_dia3 = 0;
+        double div_temp_sys3 = 0;
+        double div_temp_dia3 = 0;
         String condition3 = "";
 
         int temp_sys4 = 0;
         int temp_dia4 = 0;
         int counter4 = 0;
-        int div_temp_sys4 = 0;
-        int div_temp_dia4 = 0;
+        double div_temp_sys4 = 0;
+        double div_temp_dia4 = 0;
         String condition4 = "";
 
         Calendar calendar = Calendar.getInstance();
@@ -186,12 +186,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
             if(counter1 == 0){
-                div_temp_sys1 = 0;
-                div_temp_dia1 = 0;
+                div_temp_sys1 = (double)0;
+                div_temp_dia1 = (double)0;
 
             } else {
-                div_temp_sys1 = temp_sys1 / counter1;
-                div_temp_dia1 = temp_dia1 / counter1;
+                div_temp_sys1 = (double)temp_sys1 / counter1;
+                div_temp_dia1 = (double)temp_dia1 / counter1;
             }
             if (div_temp_sys1 ==0 && div_temp_dia1 ==0){
                 condition1 += "No reading for this month!";
@@ -229,12 +229,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if(counter2 == 0){
-            div_temp_sys2 = 0;
-            div_temp_dia2 = 0;
+            div_temp_sys2 = (double)0;
+            div_temp_dia2 = (double)0;
 
         } else {
-            div_temp_sys2 = temp_sys2 / counter2;
-            div_temp_dia2 = temp_dia2 / counter2;
+            div_temp_sys2 = (double)temp_sys2 / counter2;
+            div_temp_dia2 = (double)temp_dia2 / counter2;
         }
         if (div_temp_sys2 ==0 && div_temp_dia2 ==0){
             condition2 += "No reading for this month!";
@@ -274,12 +274,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if(counter3 == 0){
-            div_temp_sys3 = 0;
-            div_temp_dia3 = 0;
+            div_temp_sys3 = (double)0;
+            div_temp_dia3 = (double)0;
 
         } else {
-            div_temp_sys3 = temp_sys3 / counter3;
-            div_temp_dia3 = temp_dia3 / counter3;
+            div_temp_sys3 = (double)temp_sys3 / counter3;
+            div_temp_dia3 = (double)temp_dia3 / counter3;
         }
         if (div_temp_sys3 ==0 && div_temp_dia3 ==0){
             condition3 += "No reading for this month!";
@@ -319,14 +319,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if(counter4 == 0){
-            div_temp_sys4 = 0;
-            div_temp_dia4 = 0;
+            div_temp_sys4 = (double)0;
+            div_temp_dia4 = (double)0;
 
         } else {
-            div_temp_sys4 = temp_sys4 / counter4;
-            div_temp_dia4 = temp_dia4 / counter4;
+            div_temp_sys4 = (double)temp_sys4 / counter4;
+            div_temp_dia4 = (double)temp_dia4 / counter4;
         }
-        if (div_temp_sys4 ==0 && div_temp_dia4 ==0){
+        if (div_temp_sys4 == 0 && div_temp_dia4 == 0){
             condition4 += "No reading for this month!";
         }
         else if(div_temp_sys4 < 120 && div_temp_dia4 < 80){
@@ -351,23 +351,23 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Report.class);
         Toast.makeText(this, "You just clicked for report", Toast.LENGTH_SHORT).show();
         intent.putExtra("familyMem1", familyMemberList.get(0));
-        intent.putExtra("sys1", Integer.toString(sysList.get(0)));
-        intent.putExtra("dia1", Integer.toString(diaList.get(0)));
+        intent.putExtra("sys1", Double.toString(sysList.get(0)));
+        intent.putExtra("dia1", Double.toString(diaList.get(0)));
         intent.putExtra("condition1", conditionList.get(0));
 
         intent.putExtra("familyMem2", familyMemberList.get(1));
-        intent.putExtra("sys2", Integer.toString(sysList.get(1)));
-        intent.putExtra("dia2", Integer.toString(diaList.get(1)));
+        intent.putExtra("sys2", Double.toString(sysList.get(1)));
+        intent.putExtra("dia2", Double.toString(diaList.get(1)));
         intent.putExtra("condition2", conditionList.get(1));
 
         intent.putExtra("familyMem3", familyMemberList.get(2));
-        intent.putExtra("sys3", Integer.toString(sysList.get(2)));
-        intent.putExtra("dia3", Integer.toString(diaList.get(2)));
+        intent.putExtra("sys3", Double.toString(sysList.get(2)));
+        intent.putExtra("dia3", Double.toString(diaList.get(2)));
         intent.putExtra("condition3", conditionList.get(2));
 
         intent.putExtra("familyMem4", familyMemberList.get(3));
-        intent.putExtra("sys4", Integer.toString(sysList.get(3)));
-        intent.putExtra("dia4", Integer.toString(diaList.get(3)));
+        intent.putExtra("sys4", Double.toString(sysList.get(3)));
+        intent.putExtra("dia4", Double.toString(diaList.get(3)));
         intent.putExtra("condition4", conditionList.get(3));
 
         startActivity(intent);

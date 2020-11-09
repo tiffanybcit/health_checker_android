@@ -49,6 +49,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import static java.lang.Character.isDigit;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText editTextSys;
@@ -442,7 +444,7 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String temp_id = (String)document.getId();
-                                Log.d("debug", "id "+(String)document.getId());
+//                                Log.d("debug", "id "+(String)document.getId());
                                 String temp_fam = (String) document.getData().get("FamilyMember");
 //                                Log.d("debug", "Task "+(String) document.getData().get("task"));
 
@@ -507,20 +509,25 @@ public class MainActivity extends AppCompatActivity {
             // else false
             if (str.charAt(i) >= '0'
                     && str.charAt(i) <= '9') {
-                return true;
-            }
-            else {
+                Log.d("debug", Character.toString(str.charAt(i)));
+                continue;
+            } else {
                 return false;
             }
+
         }
-        return false;
+        return true;
     }
+
     //collect data to be used later for firebase
     public void addTask(){
         String fam = s.getSelectedItem().toString();
 
         String sys1 = editTextSys.getText().toString().trim();
+        Log.d("debugg", sys1);
         String dia1 = editTextDia.getText().toString().trim();
+        Log.d("debugg", dia1);
+
         if (TextUtils.isEmpty(sys1) || !onlyDigits(sys1)) {
             Toast.makeText(this, "You must enter a sys pressure.", Toast.LENGTH_LONG).show();
             return;

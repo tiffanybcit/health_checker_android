@@ -453,9 +453,9 @@ public class MainActivity extends AppCompatActivity {
                                 String temp_fam = (String) document.getData().get("FamilyMember");
 //                                Log.d("debug", "Task "+(String) document.getData().get("task"));
 
-                                String temp_sys = (String) document.getData().get("Sys");
+                                String temp_sys = (String) document.getData().get("Systolic Pressure");
 //                                Log.d("debug", "Who "+(String) document.getData().get("who"));
-                                String temp_dia = (String) document.getData().get("Dia");
+                                String temp_dia = (String) document.getData().get("Diastolic Pressure");
                                 com.google.firebase.Timestamp temp_time =
                                         (com.google.firebase.Timestamp) document.getData().get("Date");
 
@@ -587,8 +587,8 @@ public class MainActivity extends AppCompatActivity {
 
         task.put("FamilyMember", fam);
         task.put("Date", date);
-        task.put("Sys", sys);
-        task.put("Dia", dia);
+        task.put("Systolic Pressure", sys);
+        task.put("Diastolic Pressure", dia);
         task.put("Condition", condition);
 
         db.collection("readings").document()

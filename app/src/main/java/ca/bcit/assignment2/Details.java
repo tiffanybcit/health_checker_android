@@ -105,9 +105,6 @@ public class Details extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getInput(article.get_id());
-//                Intent intent = new Intent(view.getContext(), MainActivity.class);
-
-//                view.getContext().startActivity(intent);
             }
         });
 
@@ -150,6 +147,7 @@ public class Details extends AppCompatActivity {
         }
         return true;
     }
+
     //get user input to be used later in update function
     public void getInput(String id){
         String fam = familyMem.getSelectedItem().toString();
@@ -197,13 +195,6 @@ public class Details extends AppCompatActivity {
 
         }
         update(fam, status11, sys, dia, id);
-
-
-//        finish();
-//        overridePendingTransition( 0, 0);
-//        startActivity(getIntent());
-//        overridePendingTransition( 0, 0);
-
     }
 
     //update helper function
@@ -232,8 +223,9 @@ public class Details extends AppCompatActivity {
                     }
                 });
     }
-    private int getIndex(Spinner spinner, String myString){
 
+    //helper function: get the index of choice from spinner
+    private int getIndex(Spinner spinner, String myString){
         int index = 0;
 
         for (int i=0;i<spinner.getCount();i++){
@@ -257,15 +249,9 @@ public class Details extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-//        builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//            }
-//        });
 
         android.app.AlertDialog dialog = builder.create();
         dialog.show();
-
 
     }
 }

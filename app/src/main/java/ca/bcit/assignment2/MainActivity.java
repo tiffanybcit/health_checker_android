@@ -53,6 +53,7 @@ import java.util.Objects;
 
 import static java.lang.Character.isDigit;
 
+//main activity for homepage
 public class MainActivity extends AppCompatActivity {
 
     EditText editTextSys;
@@ -112,12 +113,12 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s.setAdapter(adapter);
 
-
-//        String text = spinner.getSelectedItem().toString();
         listItems = new ArrayList<>();
         setQuene();
 
     }
+
+    // save the current state
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -126,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         outState.putString("diareading", editTextDia.getText().toString());
     }
 
+    // restore the current state
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
@@ -138,12 +140,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    //prepare and send to report page
+    // prepare and send to report page
     public void getReport(){
         ArrayList<String> familyMemberList = new ArrayList<String>();
         ArrayList<String> sysList = new ArrayList<String>();
         ArrayList<String> diaList = new ArrayList<String>();
         ArrayList<String> conditionList = new ArrayList<String>();
+        // get first family member
         int temp_sys1 = 0;
         int temp_dia1 = 0;
         int counter1 = 0;
@@ -151,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
         double div_temp_dia1 = 0;
         String condition1 = "";
 
+        // get second family member
         int temp_sys2 = 0;
         int temp_dia2 = 0;
         int counter2 = 0;
@@ -158,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
         double div_temp_dia2 = 0;
         String condition2 = "";
 
+        // get third family member
         int temp_sys3 = 0;
         int temp_dia3 = 0;
         int counter3 = 0;
@@ -165,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
         double div_temp_dia3 = 0;
         String condition3 = "";
 
+        // get fourth family member
         int temp_sys4 = 0;
         int temp_dia4 = 0;
         int counter4 = 0;
@@ -176,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
         String monthNow  = (String) DateFormat.format("MM",   calendar); // 06
         String yearNow = (String) DateFormat.format("yyyy", calendar); // 2013
 
+        // for first family member
         for (int j = 0; j < listItems.size(); j++) {
             String monthThen = (String) DateFormat.format("MM", listItems.get(j).get_date());
 
@@ -214,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
                 condition1 +="High Blood Pressure (Stage2)";
             }
 
+            //add to arraylist and will be used later
             familyMemberList.add("father@home.com");
             DecimalFormat df = new DecimalFormat("0.00");
 
@@ -221,6 +229,7 @@ public class MainActivity extends AppCompatActivity {
             diaList.add(df.format(div_temp_dia1));
             conditionList.add(condition1);
 
+        // for second family member
         for (int j = 0; j < listItems.size(); j++) {
             String monthThen = (String) DateFormat.format("MM", listItems.get(j).get_date());
 
@@ -259,13 +268,13 @@ public class MainActivity extends AppCompatActivity {
             condition2 +="High Blood Pressure (Stage2)";
         }
 
+        //add to arraylist and will be used later
         familyMemberList.add("mother@home.com");
         sysList.add(df.format(div_temp_sys2));
         diaList.add(df.format(div_temp_dia2));
         conditionList.add(condition2);
 
-
-
+        // for third family member
         for (int j = 0; j < listItems.size(); j++) {
             String monthThen = (String) DateFormat.format("MM", listItems.get(j).get_date());
 
@@ -304,13 +313,14 @@ public class MainActivity extends AppCompatActivity {
             condition3 +="High Blood Pressure (Stage2)";
         }
 
+        //add to arraylist and will be used later
         familyMemberList.add("grandma@home.com");
         sysList.add(df.format(div_temp_sys3));
         diaList.add(df.format(div_temp_dia3));
         conditionList.add(condition3);
 
 
-
+        // for fourth family member
         for (int j = 0; j < listItems.size(); j++) {
             String monthThen = (String) DateFormat.format("MM", listItems.get(j).get_date());
 
@@ -349,12 +359,13 @@ public class MainActivity extends AppCompatActivity {
             condition4 +="High Blood Pressure (Stage2)";
         }
 
+        //add to arraylist and will be used later
         familyMemberList.add("grandpa@home.com");
         sysList.add(df.format(div_temp_sys4));
         diaList.add(df.format(div_temp_dia4));
         conditionList.add(condition4);
 
-
+        // pass all to the report page
         Intent intent = new Intent(this, Report.class);
         Toast.makeText(this, "You just clicked to see your report", Toast.LENGTH_SHORT).show();
         intent.putExtra("familyMem1", familyMemberList.get(0));
@@ -438,6 +449,8 @@ public class MainActivity extends AppCompatActivity {
 //        Toast.makeText(this, "You just clicked for report", Toast.LENGTH_SHORT).show();
 //        intent.putExtra("familyMem1", familyConditions);
 //    }
+
+
     //read data from firebase to get to a list
     public void setQuene(){
 
@@ -449,22 +462,19 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document :task.getResult()) {
                                 String temp_id = (String)document.getId();
-//                                Log.d("debug", "id "+(String)document.getId());
+
                                 String temp_fam = (String) document.getData().get("FamilyMember");
-//                                Log.d("debug", "Task "+(String) document.getData().get("task"));
 
                                 String temp_sys = (String) document.getData().get("Systolic Pressure");
-//                                Log.d("debug", "Who "+(String) document.getData().get("who"));
+
                                 String temp_dia = (String) document.getData().get("Diastolic Pressure");
                                 com.google.firebase.Timestamp temp_time =
                                         (com.google.firebase.Timestamp) document.getData().get("Date");
 
-//                                Log.d("debug", "Date "+temp_time.toDate());
                                 String temp_status = (String) document.getData().get("Condition");
 
                                 Entry book123 = new Entry(temp_id, temp_fam, temp_time.toDate(), temp_sys, temp_dia, temp_status);
                                 listItems.add(book123);
-//                                Log.d("debug", document.getId() + " => " + document.getData());
                             }
                             adapter = new MyAdapter(listItems, getApplicationContext());
                             recyclerView.setAdapter(adapter);
@@ -475,6 +485,7 @@ public class MainActivity extends AppCompatActivity {
                 });
 
     }
+
     //the alert
     public void confirm() {
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
@@ -489,17 +500,11 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-//        builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//            }
-//        });
 
         android.app.AlertDialog dialog = builder.create();
         dialog.show();
-
-
     }
+
     // Function to check if a string
     // contains only digits
     public static boolean onlyDigits(String str)
@@ -509,7 +514,6 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) >= '0'
                     && str.charAt(i) <= '9') {
-//                Log.d("debug", Character.toString(str.charAt(i)));
                 continue;
             } else {
                 return false;
@@ -524,9 +528,10 @@ public class MainActivity extends AppCompatActivity {
         String fam = s.getSelectedItem().toString();
 
         String sys1 = editTextSys.getText().toString().trim();
-//        Log.d("debugg", sys1);
+
         String dia1 = editTextDia.getText().toString().trim();
-//        Log.d("debugg", dia1);
+
+        //error-catching scheme
         if(!onlyDigits(sys1)){
             Toast.makeText(this, "You must enter a whole number.", Toast.LENGTH_LONG).show();
             return;
@@ -547,37 +552,30 @@ public class MainActivity extends AppCompatActivity {
         }
         calendar = Calendar.getInstance();
 
-//        String deviceId = Settings.System.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-
-    String status11 = "";
-    if(Integer.parseInt(sys1) < 120 && Integer.parseInt(dia1) < 80){
-        status11 +="Normal";
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-    } else if((Integer.parseInt(sys1) < 129) && (Integer.parseInt(sys1) > 120) && Integer.parseInt(dia1) < 80){
-        status11 +="Elevated";
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-    } else if ((Integer.parseInt(sys1) < 139 && Integer.parseInt(sys1) > 130) || (Integer.parseInt(dia1) > 80 && Integer.parseInt(dia1) < 89)){
-        status11 +="High Blood Pressure(Stage1)";
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-    }else if((Integer.parseInt(sys1) > 180) || (Integer.parseInt(dia1) > 120 )){
-        status11 +="Hypertensive Crisis";
-        confirm();
-    }
-    else {
-        status11 +="High Blood Pressure(Stage2)";
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-    }
-        writeToDatabase(fam, calendar.getTime(), sys1, dia1, status11);
-//        finish();
-//        overridePendingTransition( 0, 0);
-//        startActivity(getIntent());
-//        overridePendingTransition( 0, 0);
-
-
+        // decide a status
+        String status11 = "";
+        if(Integer.parseInt(sys1) < 120 && Integer.parseInt(dia1) < 80){
+            status11 +="Normal";
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        } else if((Integer.parseInt(sys1) < 129) && (Integer.parseInt(sys1) > 120) && Integer.parseInt(dia1) < 80){
+            status11 +="Elevated";
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        } else if ((Integer.parseInt(sys1) < 139 && Integer.parseInt(sys1) > 130) || (Integer.parseInt(dia1) > 80 && Integer.parseInt(dia1) < 89)){
+            status11 +="High Blood Pressure(Stage1)";
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }else if((Integer.parseInt(sys1) > 180) || (Integer.parseInt(dia1) > 120 )){
+            status11 +="Hypertensive Crisis";
+            confirm();
+        }
+        else {
+            status11 +="High Blood Pressure(Stage2)";
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
+            writeToDatabase(fam, calendar.getTime(), sys1, dia1, status11);
     }
 
     //write to database

@@ -12,10 +12,18 @@ public class Entry implements Serializable {
     String _condition;
     String _id;
 
-    public  Entry(){
+    //constructor
+    public Entry(String id, String familyMember, Date date, String sys, String dia, String condition) {
+        _familyMember = familyMember;
+        _date = date;
+        _sys = sys;
+        _dia = dia;
+        _condition = condition;
+        _id = id;
 
     }
 
+    //setters
     public void set_familyMember(String _familyMember) {
         this._familyMember = _familyMember;
     }
@@ -32,10 +40,6 @@ public class Entry implements Serializable {
         this._dia = _dia;
     }
 
-    public String get_id() {
-        return _id;
-    }
-
     public void set_id(String _id) {
         this._id = _id;
     }
@@ -44,14 +48,9 @@ public class Entry implements Serializable {
         this._condition = _condition;
     }
 
-    public Entry(String id, String familyMember, Date date, String sys, String dia, String condition) {
-        _familyMember = familyMember;
-        _date = date;
-        _sys = sys;
-        _dia = dia;
-        _condition = condition;
-        _id = id;
-
+    //getters
+    public String get_id() {
+        return _id;
     }
 
     public String get_familyMember() {

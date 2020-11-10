@@ -49,6 +49,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import static java.lang.Character.isDigit;
 
@@ -205,12 +206,12 @@ public class MainActivity extends AppCompatActivity {
             } else if(div_temp_sys1 < 129 && div_temp_dia1 > 120 && div_temp_dia1 < 80){
                 condition1 +="Elevated";
             } else if ((div_temp_sys1 < 139 && div_temp_sys1 > 130) || (div_temp_dia1 > 80 && div_temp_dia1 < 89)){
-                condition1 +="High Blood Pressure(Stage1)";
+                condition1 +="High Blood Pressure (Stage1)";
             } else if(div_temp_sys1 > 180 || div_temp_dia1 > 120 ){
                 condition1 +="Hypertensive Crisis";
             }
             else {
-                condition1 +="High Blood Pressure(Stage2)";
+                condition1 +="High Blood Pressure (Stage2)";
             }
 
             familyMemberList.add("father@home.com");
@@ -250,12 +251,12 @@ public class MainActivity extends AppCompatActivity {
         } else if(div_temp_sys2 < 129 && div_temp_dia2 > 120 && div_temp_dia2 < 80){
             condition2 +="Elevated";
         } else if ((div_temp_sys2 < 139 && div_temp_sys2 > 130) || (div_temp_dia2 > 80 && div_temp_dia2 < 89)){
-            condition2 +="High Blood Pressure(Stage1)";
+            condition2 +="High Blood Pressure (Stage1)";
         } else if(div_temp_sys2 > 180 || div_temp_dia2 > 120 ){
             condition2 +="Hypertensive Crisis";
         }
         else {
-            condition2 +="High Blood Pressure(Stage2)";
+            condition2 +="High Blood Pressure (Stage2)";
         }
 
         familyMemberList.add("mother@home.com");
@@ -295,12 +296,12 @@ public class MainActivity extends AppCompatActivity {
         } else if(div_temp_sys3 < 129 && div_temp_dia3 > 120 && div_temp_dia3 < 80){
             condition3 +="Elevated";
         } else if ((div_temp_sys3 < 139 && div_temp_sys3 > 130) || (div_temp_dia3 > 80 && div_temp_dia3 < 89)){
-            condition3 +="High Blood Pressure(Stage1)";
+            condition3 +="High Blood Pressure (Stage1)";
         } else if(div_temp_sys3 > 180 || div_temp_dia3 > 120 ){
             condition3 +="Hypertensive Crisis";
         }
         else {
-            condition3 +="High Blood Pressure(Stage2)";
+            condition3 +="High Blood Pressure (Stage2)";
         }
 
         familyMemberList.add("grandma@home.com");
@@ -340,12 +341,12 @@ public class MainActivity extends AppCompatActivity {
         } else if(div_temp_sys4 < 129 && div_temp_dia4 > 120 && div_temp_dia4 < 80){
             condition4 +="Elevated";
         } else if ((div_temp_sys4 < 139 && div_temp_sys4 > 130) || (div_temp_dia4 > 80 && div_temp_dia4 < 89)){
-            condition4 +="High Blood Pressure(Stage1)";
+            condition4 +="High Blood Pressure (Stage1)";
         } else if(div_temp_sys4 > 180 || div_temp_dia4 > 120 ){
             condition4 +="Hypertensive Crisis";
         }
         else {
-            condition4 +="High Blood Pressure(Stage2)";
+            condition4 +="High Blood Pressure (Stage2)";
         }
 
         familyMemberList.add("grandpa@home.com");
@@ -446,7 +447,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
+                            for (QueryDocumentSnapshot document :task.getResult()) {
                                 String temp_id = (String)document.getId();
 //                                Log.d("debug", "id "+(String)document.getId());
                                 String temp_fam = (String) document.getData().get("FamilyMember");

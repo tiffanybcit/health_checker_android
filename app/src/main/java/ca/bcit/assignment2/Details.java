@@ -79,9 +79,11 @@ public class Details extends AppCompatActivity {
         String time = dateString.substring(11);
 
 
-        Date.setText("Date: " + date);
+        String dateLabel = "Date: " + date;
+        Date.setText(dateLabel);
 
-        Time.setText("Time: " + time);
+        String timeLabel = "Time: " + time;
+        Time.setText(timeLabel);
 
         sys1.setText(article.get_sys());
         dia1.setText(article.get_dia());
@@ -208,8 +210,8 @@ public class Details extends AppCompatActivity {
     public void update(String fam, String status, String sys, String dia, String id){
         Map<String, Object> temp = new HashMap<>();
         temp.put("FamilyMember", fam);
-        temp.put("Sys", sys);
-        temp.put("Dia", dia);
+        temp.put("Systolic Pressure", sys);
+        temp.put("Diastolic Pressure", dia);
         temp.put("Condition", status);
         Calendar calendar = Calendar.getInstance();
         temp.put("Date", calendar.getTime());

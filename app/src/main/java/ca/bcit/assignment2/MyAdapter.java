@@ -48,21 +48,23 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return new ViewHolder(v);
     }
 
-
-
-
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, int position) {
         final Entry item = articleList.get(position);
-        holder.line1.setText("Family Member: " + item.get_familyMember());
+        String line1Holder = "Family Member: " + item.get_familyMember();
+        holder.line1.setText(line1Holder);
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss", Locale.US);
         String dateString = format.format(item.get_date());
 
-        holder.line2.setText("Date: " + dateString);
-        holder.line3.setText("Sys: " + item.get_sys());
-        holder.line4.setText("Dia: " + item.get_dia());
-        holder.line5.setText("Condition: "+ item.get_condition());
+        String line2Holder = "Date: " + dateString;
+        holder.line2.setText(line2Holder);
+        String line3Holder = "Systolic Pressure: " + item.get_sys();
+        holder.line3.setText(line3Holder);
+        String line4Holder = "Diastolic Pressure: " + item.get_dia();
+        holder.line4.setText(line4Holder);
+        String line5Holder = "Condition: "+ item.get_condition();
+        holder.line5.setText(line5Holder);
         holder.overall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,13 +78,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         });
     }
 
-
-
     @Override
     public int getItemCount() {
         return articleList.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView line1;
         public TextView line2;
         public TextView line3;

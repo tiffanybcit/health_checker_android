@@ -33,12 +33,10 @@ public class Report extends AppCompatActivity {
     TextView dia2;
     TextView condition2;
 
-
     TextView fam3;
     TextView sys3;
     TextView dia3;
     TextView condition3;
-
 
     TextView fam4;
     TextView sys4;
@@ -63,13 +61,11 @@ public class Report extends AppCompatActivity {
 
         condition2 = findViewById(R.id.avrcondition2);
 
-
         fam3 = findViewById(R.id.family3);
         sys3 = findViewById(R.id.avrsys3);
         dia3 = findViewById(R.id.avrdia3);
 
         condition3 = findViewById(R.id.avrcondition3);
-
 
         fam4 = findViewById(R.id.family4);
         sys4 = findViewById(R.id.avrsys4);
@@ -77,38 +73,37 @@ public class Report extends AppCompatActivity {
 
         condition4 = findViewById(R.id.avrcondition4);
 
-
         //Received from the last page
         Intent intent = getIntent();
 
         fam1.setText("Family Member: "+ intent.getStringExtra("familyMem1"));
-        sys1.setText("Sys: " + intent.getStringExtra("sys1"));
-        dia1.setText("Dia: " + intent.getStringExtra("dia1"));
+        sys1.setText("Systolic Pressure: " + intent.getStringExtra("sys1"));
+        dia1.setText("Diastolic Pressure: " + intent.getStringExtra("dia1"));
         condition1.setText("Condition: "+ intent.getStringExtra("condition1"));
 
         fam2.setText("Family Member: "+ intent.getStringExtra("familyMem2"));
-        sys2.setText("Sys: " + intent.getStringExtra("sys2"));
-        dia2.setText("Dia: " + intent.getStringExtra("dia2"));
+        sys2.setText("Systolic Pressure: " + intent.getStringExtra("sys2"));
+        dia2.setText("Diastolic Pressure: " + intent.getStringExtra("dia2"));
         condition2.setText("Condition: "+ intent.getStringExtra("condition2"));
 
 
         fam3.setText("Family Member: "+ intent.getStringExtra("familyMem3"));
-        sys3.setText("Sys: " + intent.getStringExtra("sys3"));
-        dia3.setText("Dia: " + intent.getStringExtra("dia3"));
+        sys3.setText("Systolic Pressure: " + intent.getStringExtra("sys3"));
+        dia3.setText("Diastolic Pressure: " + intent.getStringExtra("dia3"));
         condition3.setText("Condition: "+ intent.getStringExtra("condition3"));
 
 
         fam4.setText("Family Member: "+ intent.getStringExtra("familyMem4"));
-        sys4.setText("Sys: " + intent.getStringExtra("sys4"));
-        dia4.setText("Dia: " + intent.getStringExtra("dia4"));
+        sys4.setText("Systolic Pressure: " + intent.getStringExtra("sys4"));
+        dia4.setText("Diastolic Pressure: " + intent.getStringExtra("dia4"));
         condition4.setText("Condition: "+ intent.getStringExtra("condition4"));
-
 
         Calendar calendar = Calendar.getInstance();
 
         String monthNow  = (String) DateFormat.format("MMM",   calendar); // JUN
         String yearNow = (String) DateFormat.format("yyyy", calendar); // 2013
-        title.setText("Month-to-date average readings for " + monthNow + " " + yearNow);
+        String monthToDate = "Month-to-date average readings for " + monthNow + " " + yearNow;
+        title.setText(monthToDate);
     }
 
 

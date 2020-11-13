@@ -215,9 +215,9 @@ public class MainActivity extends AppCompatActivity {
             }
             else if(div_temp_sys1 < 120 && div_temp_dia1 < 80){
                 condition1 +="Normal";
-            } else if(div_temp_sys1 < 129 && div_temp_dia1 > 120 && div_temp_dia1 < 80){
+            } else if(div_temp_sys1 <= 129 && div_temp_dia1 >= 120 && div_temp_dia1 < 80){
                 condition1 +="Elevated";
-            } else if ((div_temp_sys1 < 139 && div_temp_sys1 > 130) || (div_temp_dia1 > 80 && div_temp_dia1 < 89)){
+            } else if ((div_temp_sys1 <= 139 && div_temp_sys1 >= 130) || (div_temp_dia1 >= 80 && div_temp_dia1 <= 89)){
                 condition1 +="High Blood Pressure (Stage1)";
             } else if(div_temp_sys1 > 180 || div_temp_dia1 > 120 ){
                 condition1 +="Hypertensive Crisis";
@@ -267,9 +267,9 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(div_temp_sys2 < 120 && div_temp_dia2 < 80){
             condition2 +="Normal";
-        } else if(div_temp_sys2 < 129 && div_temp_dia2 > 120 && div_temp_dia2 < 80){
+        } else if(div_temp_sys2 <= 129 && div_temp_dia2 >= 120 && div_temp_dia2 < 80){
             condition2 +="Elevated";
-        } else if ((div_temp_sys2 < 139 && div_temp_sys2 > 130) || (div_temp_dia2 > 80 && div_temp_dia2 < 89)){
+        } else if ((div_temp_sys2 <= 139 && div_temp_sys2 >= 130) || (div_temp_dia2 >= 80 && div_temp_dia2 <= 89)){
             condition2 +="High Blood Pressure (Stage1)";
         } else if(div_temp_sys2 > 180 || div_temp_dia2 > 120 ){
             condition2 +="Hypertensive Crisis";
@@ -316,9 +316,9 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(div_temp_sys3 < 120 && div_temp_dia3 < 80){
             condition3 +="Normal";
-        } else if(div_temp_sys3 < 129 && div_temp_dia3 > 120 && div_temp_dia3 < 80){
+        } else if(div_temp_sys3 <= 129 && div_temp_dia3 >= 120 && div_temp_dia3 < 80){
             condition3 +="Elevated";
-        } else if ((div_temp_sys3 < 139 && div_temp_sys3 > 130) || (div_temp_dia3 > 80 && div_temp_dia3 < 89)){
+        } else if ((div_temp_sys3 <= 139 && div_temp_sys3 >= 130) || (div_temp_dia3 >= 80 && div_temp_dia3 <= 89)){
             condition3 +="High Blood Pressure (Stage1)";
         } else if(div_temp_sys3 > 180 || div_temp_dia3 > 120 ){
             condition3 +="Hypertensive Crisis";
@@ -366,9 +366,9 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(div_temp_sys4 < 120 && div_temp_dia4 < 80){
             condition4 +="Normal";
-        } else if(div_temp_sys4 < 129 && div_temp_dia4 > 120 && div_temp_dia4 < 80){
+        } else if(div_temp_sys4 <= 129 && div_temp_dia4 >= 120 && div_temp_dia4 < 80){
             condition4 +="Elevated";
-        } else if ((div_temp_sys4 < 139 && div_temp_sys4 > 130) || (div_temp_dia4 > 80 && div_temp_dia4 < 89)){
+        } else if ((div_temp_sys4 <= 139 && div_temp_sys4 >= 130) || (div_temp_dia4 >= 80 && div_temp_dia4 <= 89)){
             condition4 +="High Blood Pressure (Stage1)";
         } else if(div_temp_sys4 > 180 || div_temp_dia4 > 120 ){
             condition4 +="Hypertensive Crisis";
@@ -408,65 +408,6 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
-//    //read data from firebase to get to a list
-//    public void setReport(){
-//        int temp_sys1 = 0;
-//        int temp_dia1 = 0;
-//        int counter1 = 0;
-//        int div_temp_sys1 = 0;
-//        int div_temp_dia1 = 0;
-//        String condition1 = "";
-//
-//
-//        Calendar calendar = Calendar.getInstance();
-//        String monthNow  = (String) DateFormat.format("MM",   calendar); // 06
-//        String yearNow = (String) DateFormat.format("yyyy", calendar); // 2013
-//    for (int i = 0; i < arraySpinner.length; i++) {
-//        for (int j = 0; j < listItems.size(); j++) {
-//        String monthThen = (String) DateFormat.format("MM", listItems.get(j).get_date());
-//
-//        String yearThen = (String) DateFormat.format("yyyy", listItems.get(j).get_date());
-//
-//        if ("father@home.com".equals(listItems.get(j).get_familyMember())) {
-//            if (monthNow.equals(monthThen) && yearNow.equals(yearThen)) {
-//
-//                temp_sys1 += Integer.parseInt(listItems.get(j).get_sys());
-//                temp_dia1 += Integer.parseInt(listItems.get(j).get_dia());
-//                counter1 = counter1 + 1;
-//            }
-//        }
-//    }
-//    if (counter1 == 0) {
-//        div_temp_sys1 = 0;
-//        div_temp_dia1 = 0;
-//
-//    } else {
-//        div_temp_sys1 = temp_sys1 / counter1;
-//        div_temp_dia1 = temp_dia1 / counter1;
-//    }
-//    if (div_temp_sys1 == 0 && div_temp_dia1 == 0) {
-//        condition1 += "No reading for this month!";
-//    } else if (div_temp_sys1 < 120 && div_temp_dia1 < 80) {
-//        condition1 += "Normal";
-//    } else if (div_temp_sys1 < 129 && div_temp_dia1 > 120 && div_temp_dia1 < 80) {
-//        condition1 += "Elevated";
-//    } else if ((div_temp_sys1 < 139 && div_temp_sys1 > 130) || (div_temp_dia1 > 80 && div_temp_dia1 < 89)) {
-//        condition1 += "High Blood Pressure(Stage1)";
-//    } else if (div_temp_sys1 > 180 || div_temp_dia1 > 120) {
-//        condition1 += "Hypertensive Crisis";
-//    } else {
-//        condition1 += "High Blood Pressure(Stage2)";
-//    }
-//    ReportElement temp = new ReportElement(arraySpinner[i], div_temp_sys1, div_temp_dia1, condition1);
-//    familyConditions.add(temp);
-//
-//}
-//        adapter2 = new ReportAdapter(familyConditions, getApplicationContext());
-//        recyclerView2.setAdapter(adapter2);
-//        Intent intent = new Intent(this, Report.class);
-//        Toast.makeText(this, "You just clicked for report", Toast.LENGTH_SHORT).show();
-//        intent.putExtra("familyMem1", familyConditions);
-//    }
 
 
     //read data from firebase to get to a list
@@ -576,15 +517,16 @@ public class MainActivity extends AppCompatActivity {
             status11 +="Normal";
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
-        } else if((Integer.parseInt(sys1) < 129) && (Integer.parseInt(sys1) > 120) && Integer.parseInt(dia1) < 80){
+        } else if((Integer.parseInt(sys1) <= 129) && (Integer.parseInt(sys1) >= 120) && Integer.parseInt(dia1) < 80){
             status11 +="Elevated";
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
-        } else if ((Integer.parseInt(sys1) < 139 && Integer.parseInt(sys1) > 130) || (Integer.parseInt(dia1) > 80 && Integer.parseInt(dia1) < 89)){
+        } else if ((Integer.parseInt(sys1) <= 139 && Integer.parseInt(sys1) >= 130) || (Integer.parseInt(dia1) >= 80
+                && Integer.parseInt(dia1) <= 89)){
             status11 +="High Blood Pressure(Stage1)";
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
-        }else if((Integer.parseInt(sys1) > 180) || (Integer.parseInt(dia1) > 120 )){
+        } else if((Integer.parseInt(sys1) > 180) || (Integer.parseInt(dia1) > 120 )){
             status11 +="Hypertensive Crisis";
             confirm();
         }

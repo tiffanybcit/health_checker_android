@@ -70,7 +70,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             public void onClick(View view) {
 
                 Intent intent = new Intent(view.getContext(), Details.class);
-                Toast.makeText(context, "You just clicked something", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "You just clicked on a report.", Toast.LENGTH_SHORT).show();
                 intent.putExtra("entry", item);
 
                 view.getContext().startActivity(intent);

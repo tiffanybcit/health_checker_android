@@ -184,12 +184,17 @@ public class MainActivity extends AppCompatActivity {
 
         // for first family member
         for (int j = 0; j < listItems.size(); j++) {
+
             String monthThen = (String) DateFormat.format("MM", listItems.get(j).get_date());
 
             String yearThen = (String) DateFormat.format("yyyy", listItems.get(j).get_date());
 
+            Log.d("debug", listItems.get(j).get_condition());
             if ("father@home.com".equals(listItems.get(j).get_familyMember())) {
                 if (monthNow.equals(monthThen) && yearNow.equals(yearThen)) {
+                    if(listItems.get(j).get_sys() == null || listItems.get(j).get_dia() == null){
+                        continue;
+                    }
 
                     temp_sys1 += Integer.parseInt(listItems.get(j).get_sys());
                     temp_dia1 += Integer.parseInt(listItems.get(j).get_dia());
@@ -231,12 +236,17 @@ public class MainActivity extends AppCompatActivity {
 
         // for second family member
         for (int j = 0; j < listItems.size(); j++) {
+
             String monthThen = (String) DateFormat.format("MM", listItems.get(j).get_date());
 
             String yearThen = (String) DateFormat.format("yyyy", listItems.get(j).get_date());
 
+
             if ("mother@home.com".equals(listItems.get(j).get_familyMember())) {
                 if (monthNow.equals(monthThen) && yearNow.equals(yearThen)) {
+                    if(listItems.get(j).get_sys() == null || listItems.get(j).get_dia() == null){
+                        continue;
+                    }
 
                     temp_sys2 += Integer.parseInt(listItems.get(j).get_sys());
                     temp_dia2 += Integer.parseInt(listItems.get(j).get_dia());
@@ -276,12 +286,16 @@ public class MainActivity extends AppCompatActivity {
 
         // for third family member
         for (int j = 0; j < listItems.size(); j++) {
+
             String monthThen = (String) DateFormat.format("MM", listItems.get(j).get_date());
 
             String yearThen = (String) DateFormat.format("yyyy", listItems.get(j).get_date());
 
             if ("grandma@home.com".equals(listItems.get(j).get_familyMember())) {
                 if (monthNow.equals(monthThen) && yearNow.equals(yearThen)) {
+                    if(listItems.get(j).get_sys() == null || listItems.get(j).get_dia() == null){
+                        continue;
+                    }
 
                     temp_sys3 += Integer.parseInt(listItems.get(j).get_sys());
                     temp_dia3 += Integer.parseInt(listItems.get(j).get_dia());
@@ -322,12 +336,16 @@ public class MainActivity extends AppCompatActivity {
 
         // for fourth family member
         for (int j = 0; j < listItems.size(); j++) {
+
             String monthThen = (String) DateFormat.format("MM", listItems.get(j).get_date());
 
             String yearThen = (String) DateFormat.format("yyyy", listItems.get(j).get_date());
 
             if ("grandpa@home.com".equals(listItems.get(j).get_familyMember())) {
                 if (monthNow.equals(monthThen) && yearNow.equals(yearThen)) {
+                    if(listItems.get(j).get_sys() == null || listItems.get(j).get_dia() == null){
+                        continue;
+                    }
 
                     temp_sys4 += Integer.parseInt(listItems.get(j).get_sys());
                     temp_dia4 += Integer.parseInt(listItems.get(j).get_dia());

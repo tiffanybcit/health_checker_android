@@ -56,8 +56,6 @@ public class Details extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         familyMem.setAdapter(adapter);
 
-
-
         Date = findViewById(R.id.date2);
         Time = findViewById(R.id.time2);
 

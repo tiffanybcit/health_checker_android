@@ -1,5 +1,6 @@
-Tiffany Gu
-A
+Yi Wen (Tiffany) Gu
+A01045670
+tiffany-gu@hotmail.com
 
 
 Estevan Sinarta

@@ -1,10 +1,10 @@
-Yi Wen (Tiffany) Gu
-A01045670
+# An Android app created using Java
+
+Tiffany Gu
 tiffany-gu@hotmail.com
 
 
 Estevan Sinarta
-A01085237
 estevan_sinarta@yahoo.ca
 
 Usage instructions:
